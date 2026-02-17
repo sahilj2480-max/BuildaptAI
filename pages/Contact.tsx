@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Button } from '../components/Button';
-import { Mail, MapPin, Clock, Shield, AlertCircle, CheckCircle } from 'lucide-react';
+import { InlineWidget } from 'react-calendly';
+import { Mail, MapPin, Clock, Shield, AlertCircle, CheckCircle, Calendar, MessageSquare } from 'lucide-react';
 
 interface FormData {
   firstName: string;
@@ -19,6 +19,8 @@ interface FormErrors {
 }
 
 export const Contact: React.FC = () => {
+  const [activeTab, setActiveTab] = useState<'message' | 'calendar'>('calendar'); // Default to calendar for "Book a Call" flow
+
   const [formData, setFormData] = useState<FormData>({
     firstName: '',
     lastName: '',
@@ -30,6 +32,9 @@ export const Contact: React.FC = () => {
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+
+  // REPLACE THIS URL WITH YOUR ACTUAL CALENDLY LINK
+  const calendlyUrl = "https://calendly.com/buildapt-demo/30min";
 
   const validate = (): boolean => {
     const newErrors: FormErrors = {};
@@ -146,116 +151,164 @@ export const Contact: React.FC = () => {
                 </div>
             </div>
 
-            {/* Form */}
-            <div className="md:col-span-7 p-12 bg-white dark:bg-navy-900 transition-colors duration-300">
-                <div className="mb-8">
-                    <h3 className="text-3xl font-bold text-navy-950 dark:text-white mb-2 font-display">Send us a message</h3>
-                    <p className="text-slate-500 dark:text-slate-400">Fill out the form below and our team will get back to you.</p>
+            {/* Main Content Area */}
+            <div className="md:col-span-7 p-6 md:p-12 bg-white dark:bg-navy-900 transition-colors duration-300">
+                
+                {/* Custom Toggle Switch */}
+                <div className="flex p-1 bg-slate-100 dark:bg-navy-800 rounded-xl mb-8 w-full max-w-md mx-auto md:mx-0">
+                    <button
+                        onClick={() => setActiveTab('calendar')}
+                        className={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-lg text-sm font-semibold transition-all duration-300 ${
+                            activeTab === 'calendar' 
+                            ? 'bg-white dark:bg-navy-700 text-brand-600 dark:text-brand-400 shadow-sm' 
+                            : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
+                        }`}
+                    >
+                        <Calendar className="w-4 h-4" />
+                        Book a Call
+                    </button>
+                    <button
+                        onClick={() => setActiveTab('message')}
+                        className={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-lg text-sm font-semibold transition-all duration-300 ${
+                            activeTab === 'message' 
+                            ? 'bg-white dark:bg-navy-700 text-brand-600 dark:text-brand-400 shadow-sm' 
+                            : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
+                        }`}
+                    >
+                        <MessageSquare className="w-4 h-4" />
+                        Send Message
+                    </button>
                 </div>
 
-                {isSuccess ? (
-                    <div className="h-full flex flex-col items-center justify-center text-center py-10 animate-fade-in">
-                        <div className="w-20 h-20 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mb-6">
-                            <CheckCircle className="w-10 h-10 text-green-600 dark:text-green-400" />
+                {/* Content Render */}
+                {activeTab === 'calendar' ? (
+                    <div className="animate-fade-in min-h-[600px] flex flex-col">
+                        <div className="mb-4">
+                            <h3 className="text-2xl font-bold text-navy-950 dark:text-white mb-2 font-display">Book a Strategy Session</h3>
+                            <p className="text-slate-500 dark:text-slate-400 text-sm">Select a time that works for you from the calendar below.</p>
                         </div>
-                        <h4 className="text-2xl font-bold text-navy-900 dark:text-white mb-2">Message Sent!</h4>
-                        <p className="text-slate-600 dark:text-slate-400 max-w-md mx-auto">
-                            Thank you for reaching out. A member of our team will review your inquiry and get back to you within 24 hours.
-                        </p>
-                        <button 
-                            onClick={() => setIsSuccess(false)}
-                            className="mt-8 text-brand-600 dark:text-brand-400 font-semibold hover:text-brand-700 dark:hover:text-brand-300 underline"
-                        >
-                            Send another message
-                        </button>
+                        <div className="flex-grow w-full h-full rounded-2xl overflow-hidden border border-slate-100 dark:border-navy-800 bg-slate-50 dark:bg-navy-800/50">
+                            <InlineWidget 
+                                url={calendlyUrl}
+                                styles={{
+                                    height: '650px',
+                                    width: '100%'
+                                }}
+                            />
+                        </div>
                     </div>
                 ) : (
-                    <form className="space-y-6" onSubmit={handleSubmit} noValidate>
-                        <div className="grid md:grid-cols-2 gap-6">
-                            <div className="space-y-2">
-                                <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">First Name <span className="text-red-500">*</span></label>
-                                <input 
-                                    type="text" 
-                                    name="firstName"
-                                    value={formData.firstName}
-                                    onChange={handleChange}
-                                    className={`w-full px-4 py-3.5 rounded-xl border bg-slate-50 dark:bg-navy-800 dark:text-white focus:bg-white dark:focus:bg-navy-900 outline-none transition-all ${errors.firstName ? 'border-red-300 focus:border-red-500 focus:ring-4 focus:ring-red-500/10' : 'border-slate-200 dark:border-navy-700 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10'}`} 
-                                    placeholder="John" 
-                                />
-                                {errors.firstName && <p className="text-red-500 text-xs flex items-center gap-1"><AlertCircle className="w-3 h-3" /> {errors.firstName}</p>}
+                    <div className="animate-fade-in">
+                        <div className="mb-8">
+                            <h3 className="text-2xl font-bold text-navy-950 dark:text-white mb-2 font-display">Send us a message</h3>
+                            <p className="text-slate-500 dark:text-slate-400">Fill out the form below and our team will get back to you.</p>
+                        </div>
+
+                        {isSuccess ? (
+                            <div className="h-full flex flex-col items-center justify-center text-center py-10 animate-fade-in">
+                                <div className="w-20 h-20 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mb-6">
+                                    <CheckCircle className="w-10 h-10 text-green-600 dark:text-green-400" />
+                                </div>
+                                <h4 className="text-2xl font-bold text-navy-900 dark:text-white mb-2">Message Sent!</h4>
+                                <p className="text-slate-600 dark:text-slate-400 max-w-md mx-auto">
+                                    Thank you for reaching out. A member of our team will review your inquiry and get back to you within 24 hours.
+                                </p>
+                                <button 
+                                    onClick={() => setIsSuccess(false)}
+                                    className="mt-8 text-brand-600 dark:text-brand-400 font-semibold hover:text-brand-700 dark:hover:text-brand-300 underline"
+                                >
+                                    Send another message
+                                </button>
                             </div>
-                            <div className="space-y-2">
-                                <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">Last Name <span className="text-red-500">*</span></label>
-                                <input 
-                                    type="text" 
-                                    name="lastName"
-                                    value={formData.lastName}
-                                    onChange={handleChange}
-                                    className={`w-full px-4 py-3.5 rounded-xl border bg-slate-50 dark:bg-navy-800 dark:text-white focus:bg-white dark:focus:bg-navy-900 outline-none transition-all ${errors.lastName ? 'border-red-300 focus:border-red-500 focus:ring-4 focus:ring-red-500/10' : 'border-slate-200 dark:border-navy-700 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10'}`} 
-                                    placeholder="Doe" 
-                                />
-                                {errors.lastName && <p className="text-red-500 text-xs flex items-center gap-1"><AlertCircle className="w-3 h-3" /> {errors.lastName}</p>}
-                            </div>
-                        </div>
-                        
-                        <div className="space-y-2">
-                            <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">Work Email <span className="text-red-500">*</span></label>
-                            <input 
-                                type="email" 
-                                name="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                className={`w-full px-4 py-3.5 rounded-xl border bg-slate-50 dark:bg-navy-800 dark:text-white focus:bg-white dark:focus:bg-navy-900 outline-none transition-all ${errors.email ? 'border-red-300 focus:border-red-500 focus:ring-4 focus:ring-red-500/10' : 'border-slate-200 dark:border-navy-700 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10'}`} 
-                                placeholder="john@company.com" 
-                            />
-                            {errors.email && <p className="text-red-500 text-xs flex items-center gap-1"><AlertCircle className="w-3 h-3" /> {errors.email}</p>}
-                        </div>
+                        ) : (
+                            <form className="space-y-6" onSubmit={handleSubmit} noValidate>
+                                <div className="grid md:grid-cols-2 gap-6">
+                                    <div className="space-y-2">
+                                        <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">First Name <span className="text-red-500">*</span></label>
+                                        <input 
+                                            type="text" 
+                                            name="firstName"
+                                            value={formData.firstName}
+                                            onChange={handleChange}
+                                            className={`w-full px-4 py-3.5 rounded-xl border bg-slate-50 dark:bg-navy-800 dark:text-white focus:bg-white dark:focus:bg-navy-900 outline-none transition-all ${errors.firstName ? 'border-red-300 focus:border-red-500 focus:ring-4 focus:ring-red-500/10' : 'border-slate-200 dark:border-navy-700 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10'}`} 
+                                            placeholder="John" 
+                                        />
+                                        {errors.firstName && <p className="text-red-500 text-xs flex items-center gap-1"><AlertCircle className="w-3 h-3" /> {errors.firstName}</p>}
+                                    </div>
+                                    <div className="space-y-2">
+                                        <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">Last Name <span className="text-red-500">*</span></label>
+                                        <input 
+                                            type="text" 
+                                            name="lastName"
+                                            value={formData.lastName}
+                                            onChange={handleChange}
+                                            className={`w-full px-4 py-3.5 rounded-xl border bg-slate-50 dark:bg-navy-800 dark:text-white focus:bg-white dark:focus:bg-navy-900 outline-none transition-all ${errors.lastName ? 'border-red-300 focus:border-red-500 focus:ring-4 focus:ring-red-500/10' : 'border-slate-200 dark:border-navy-700 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10'}`} 
+                                            placeholder="Doe" 
+                                        />
+                                        {errors.lastName && <p className="text-red-500 text-xs flex items-center gap-1"><AlertCircle className="w-3 h-3" /> {errors.lastName}</p>}
+                                    </div>
+                                </div>
+                                
+                                <div className="space-y-2">
+                                    <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">Work Email <span className="text-red-500">*</span></label>
+                                    <input 
+                                        type="email" 
+                                        name="email"
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                        className={`w-full px-4 py-3.5 rounded-xl border bg-slate-50 dark:bg-navy-800 dark:text-white focus:bg-white dark:focus:bg-navy-900 outline-none transition-all ${errors.email ? 'border-red-300 focus:border-red-500 focus:ring-4 focus:ring-red-500/10' : 'border-slate-200 dark:border-navy-700 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10'}`} 
+                                        placeholder="john@company.com" 
+                                    />
+                                    {errors.email && <p className="text-red-500 text-xs flex items-center gap-1"><AlertCircle className="w-3 h-3" /> {errors.email}</p>}
+                                </div>
 
-                        <div className="space-y-2">
-                            <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">Company Website</label>
-                            <input 
-                                type="url" 
-                                name="website"
-                                value={formData.website}
-                                onChange={handleChange}
-                                className={`w-full px-4 py-3.5 rounded-xl border bg-slate-50 dark:bg-navy-800 dark:text-white focus:bg-white dark:focus:bg-navy-900 outline-none transition-all ${errors.website ? 'border-red-300 focus:border-red-500 focus:ring-4 focus:ring-red-500/10' : 'border-slate-200 dark:border-navy-700 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10'}`} 
-                                placeholder="company.com" 
-                            />
-                            {errors.website && <p className="text-red-500 text-xs flex items-center gap-1"><AlertCircle className="w-3 h-3" /> {errors.website}</p>}
-                        </div>
+                                <div className="space-y-2">
+                                    <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">Company Website</label>
+                                    <input 
+                                        type="url" 
+                                        name="website"
+                                        value={formData.website}
+                                        onChange={handleChange}
+                                        className={`w-full px-4 py-3.5 rounded-xl border bg-slate-50 dark:bg-navy-800 dark:text-white focus:bg-white dark:focus:bg-navy-900 outline-none transition-all ${errors.website ? 'border-red-300 focus:border-red-500 focus:ring-4 focus:ring-red-500/10' : 'border-slate-200 dark:border-navy-700 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10'}`} 
+                                        placeholder="company.com" 
+                                    />
+                                    {errors.website && <p className="text-red-500 text-xs flex items-center gap-1"><AlertCircle className="w-3 h-3" /> {errors.website}</p>}
+                                </div>
 
-                        <div className="space-y-2">
-                            <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">What are you looking to automate? <span className="text-red-500">*</span></label>
-                            <textarea 
-                                name="message"
-                                value={formData.message}
-                                onChange={handleChange}
-                                className={`w-full px-4 py-3.5 rounded-xl border bg-slate-50 dark:bg-navy-800 dark:text-white focus:bg-white dark:focus:bg-navy-900 outline-none transition-all h-32 resize-none ${errors.message ? 'border-red-300 focus:border-red-500 focus:ring-4 focus:ring-red-500/10' : 'border-slate-200 dark:border-navy-700 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10'}`} 
-                                placeholder="Tell us about your manual processes..."
-                            ></textarea>
-                            {errors.message && <p className="text-red-500 text-xs flex items-center gap-1"><AlertCircle className="w-3 h-3" /> {errors.message}</p>}
-                        </div>
+                                <div className="space-y-2">
+                                    <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">What are you looking to automate? <span className="text-red-500">*</span></label>
+                                    <textarea 
+                                        name="message"
+                                        value={formData.message}
+                                        onChange={handleChange}
+                                        className={`w-full px-4 py-3.5 rounded-xl border bg-slate-50 dark:bg-navy-800 dark:text-white focus:bg-white dark:focus:bg-navy-900 outline-none transition-all h-32 resize-none ${errors.message ? 'border-red-300 focus:border-red-500 focus:ring-4 focus:ring-red-500/10' : 'border-slate-200 dark:border-navy-700 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10'}`} 
+                                        placeholder="Tell us about your manual processes..."
+                                    ></textarea>
+                                    {errors.message && <p className="text-red-500 text-xs flex items-center gap-1"><AlertCircle className="w-3 h-3" /> {errors.message}</p>}
+                                </div>
 
-                        <div className="pt-4">
-                            <button 
-                                type="submit"
-                                disabled={isSubmitting}
-                                className={`w-full md:w-auto px-8 py-4 rounded-lg font-medium text-white shadow-xl shadow-brand-500/20 transition-all duration-300 flex items-center justify-center gap-2 ${isSubmitting ? 'bg-navy-800 dark:bg-navy-700 cursor-not-allowed opacity-80' : 'bg-navy-900 dark:bg-brand-600 hover:bg-navy-950 dark:hover:bg-brand-500 hover:shadow-navy-900/40'}`}
-                            >
-                                {isSubmitting ? (
-                                    <>
-                                        <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                        </svg>
-                                        <span>Sending...</span>
-                                    </>
-                                ) : (
-                                    "Send Inquiry"
-                                )}
-                            </button>
-                        </div>
-                    </form>
+                                <div className="pt-4">
+                                    <button 
+                                        type="submit"
+                                        disabled={isSubmitting}
+                                        className={`w-full md:w-auto px-8 py-4 rounded-lg font-medium text-white shadow-xl shadow-brand-500/20 transition-all duration-300 flex items-center justify-center gap-2 ${isSubmitting ? 'bg-navy-800 dark:bg-navy-700 cursor-not-allowed opacity-80' : 'bg-navy-900 dark:bg-brand-600 hover:bg-navy-950 dark:hover:bg-brand-500 hover:shadow-navy-900/40'}`}
+                                    >
+                                        {isSubmitting ? (
+                                            <>
+                                                <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                                </svg>
+                                                <span>Sending...</span>
+                                            </>
+                                        ) : (
+                                            "Send Inquiry"
+                                        )}
+                                    </button>
+                                </div>
+                            </form>
+                        )}
+                    </div>
                 )}
             </div>
         </div>
