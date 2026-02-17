@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useId } from 'react';
 import { Link } from 'react-router-dom';
 
 interface LogoProps {
@@ -12,6 +12,9 @@ export const Logo: React.FC<LogoProps> = ({ className = "", variant = 'dark' }) 
     : 'text-navy-950 dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-400';
   
   const highlightColor = 'text-brand-600 dark:text-brand-500 group-hover:text-brand-500 dark:group-hover:text-brand-400';
+  
+  // Generate unique ID for the gradient to avoid conflicts between multiple logo instances
+  const gradientId = useId();
 
   return (
     <Link to="/" className={`flex items-center gap-3 group ${className}`}>
@@ -24,7 +27,7 @@ export const Logo: React.FC<LogoProps> = ({ className = "", variant = 'dark' }) 
           className="w-full h-full drop-shadow-sm group-hover:drop-shadow-md transition-all duration-300"
         >
           {/* Background Shape */}
-          <rect width="36" height="36" rx="8" fill="url(#logo_gradient)" />
+          <rect width="36" height="36" rx="8" fill={`url(#${gradientId})`} />
           
           {/* Geometric Monogram (B + A Integration) */}
           <path 
@@ -35,7 +38,7 @@ export const Logo: React.FC<LogoProps> = ({ className = "", variant = 'dark' }) 
           />
           
           <defs>
-            <linearGradient id="logo_gradient" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse">
+            <linearGradient id={gradientId} x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse">
               <stop stopColor="#0ea5e9" /> {/* Brand 500 - Brighter for futuristic feel */}
               <stop offset="1" stopColor="#0f172a" /> {/* Navy 900 */}
             </linearGradient>
