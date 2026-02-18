@@ -47,15 +47,15 @@ export const Home: React.FC = () => {
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 lg:pt-48 lg:pb-36 overflow-hidden bg-white dark:bg-navy-950 transition-colors duration-300">
         
-        {/* Abstract Background Elements */}
+        {/* Abstract Background Elements - Subtle Animation */}
         <div className="absolute inset-0 -z-10 pointer-events-none">
-            {/* Refined Grid - More Prominent & Technical */}
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:2.5rem_2.5rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-60 dark:opacity-30"></div>
+            {/* Refined Grid */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,#000_70%,transparent_100%)] opacity-50 dark:opacity-25"></div>
             
-            {/* Dynamic Multi-layered Gradient Glows */}
-            <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-brand-400/10 dark:bg-brand-500/10 rounded-full blur-[100px]"></div>
-            <div className="absolute top-[-20%] right-[-10%] w-[800px] h-[600px] bg-indigo-200/20 dark:bg-indigo-900/20 rounded-full blur-[120px]"></div>
-            <div className="absolute bottom-[-20%] left-[-10%] w-[600px] h-[500px] bg-sky-200/20 dark:bg-sky-900/20 rounded-full blur-[100px]"></div>
+            {/* Animated Glows */}
+            <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-brand-400/5 dark:bg-brand-500/5 rounded-full blur-[100px] animate-pulse-slow"></div>
+            <div className="absolute top-[10%] right-[-10%] w-[600px] h-[500px] bg-indigo-200/10 dark:bg-indigo-900/10 rounded-full blur-[100px]"></div>
+            <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[500px] bg-sky-200/10 dark:bg-sky-900/10 rounded-full blur-[100px]"></div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
@@ -68,12 +68,12 @@ export const Home: React.FC = () => {
           
           {/* Subheadline */}
           <p className="max-w-2xl mx-auto text-lg md:text-xl text-slate-500 dark:text-slate-400 mb-10 leading-relaxed animate-fade-in-up [animation-delay:400ms]">
-            We help ambitious businesses build and adapt with AI to automate, optimize, and accelerate growth without the operational chaos.
+            We build intelligent automations and scalable infrastructure that allow you to grow without chaos.
           </p>
           
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up [animation-delay:600ms]">
-            <Button to="/contact" size="lg" className="w-full sm:w-auto min-w-[180px]">Book a Strategy Call</Button>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-5 animate-fade-in-up [animation-delay:600ms]">
+            <Button to="/contact" size="lg" className="w-full sm:w-auto min-w-[180px] shadow-xl shadow-brand-500/20 hover:shadow-brand-500/30">Book a Strategy Call</Button>
             <Button to="/services" variant="secondary" size="lg" className="w-full sm:w-auto min-w-[180px]">Explore Services</Button>
           </div>
         </div>
@@ -89,8 +89,8 @@ export const Home: React.FC = () => {
                   Deploy specific modules to handle your most time-consuming operations.
                 </p>
             </div>
-            <Link to="/services" className="text-brand-600 dark:text-brand-400 font-semibold hover:text-brand-700 dark:hover:text-brand-300 flex items-center gap-2 text-sm">
-                View Full Capabilities <ArrowRight className="w-4 h-4" />
+            <Link to="/services" className="text-brand-600 dark:text-brand-400 font-semibold hover:text-brand-700 dark:hover:text-brand-300 flex items-center gap-2 text-sm group">
+                View Full Capabilities <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
           
@@ -115,7 +115,7 @@ export const Home: React.FC = () => {
                 to="/services" 
                 className="group bg-slate-100 dark:bg-navy-800 p-8 rounded-xl border border-transparent hover:bg-slate-200 dark:hover:bg-navy-700 transition-all duration-300 flex flex-col justify-center items-center text-center"
               >
-                <div className="w-12 h-12 bg-white dark:bg-navy-700 rounded-full flex items-center justify-center mb-4 shadow-sm">
+                <div className="w-12 h-12 bg-white dark:bg-navy-700 rounded-full flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition-transform">
                     <ArrowRight className="w-5 h-5 text-navy-900 dark:text-white" />
                 </div>
                 <h3 className="text-lg font-bold text-navy-950 dark:text-white">View All Solutions</h3>

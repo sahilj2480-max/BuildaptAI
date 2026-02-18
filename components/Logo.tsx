@@ -16,8 +16,8 @@ export const Logo: React.FC<LogoProps> = ({ className = "", variant = 'dark' }) 
   // Innovative Box Styles
   // Removed borders. Using gradients and soft shadows for definition.
   const boxStyles = variant === 'light'
-    ? 'bg-navy-800 ring-1 ring-white/10' // Footer style
-    : 'bg-gradient-to-br from-white to-brand-50 dark:from-navy-800 dark:to-navy-950 shadow-lg shadow-brand-500/10 dark:shadow-black/40 ring-1 ring-black/5 dark:ring-white/10';
+    ? 'bg-navy-800/80 ring-1 ring-white/10' // Footer style
+    : 'bg-gradient-to-br from-white to-brand-50/50 dark:from-navy-800 dark:to-navy-900 shadow-lg shadow-brand-500/10 dark:shadow-black/40';
 
   // Path Colors
   const path1Class = "fill-[rgba(35,158,233,1)]"; 
@@ -26,22 +26,23 @@ export const Logo: React.FC<LogoProps> = ({ className = "", variant = 'dark' }) 
     : "fill-[rgba(18,40,95,1)] dark:fill-white";
 
   return (
-    <Link to="/" className={`flex items-center gap-3 group ${className}`}>
+    <Link to="/" className={`flex items-center gap-4 group ${className}`}>
       {/* 
          Rectangular Box Container 
-         - Size: w-12 h-12 (standard icon size, but logo inside is now zoomed)
+         - Size: w-14 h-14 (Larger container)
+         - No white borders
       */}
       <div className={`
-        relative w-12 h-12 flex-shrink-0 flex items-center justify-center rounded-xl 
+        relative w-12 h-12 md:w-14 md:h-14 flex-shrink-0 flex items-center justify-center rounded-xl 
         transition-all duration-300 ease-out
         group-hover:scale-105 group-hover:shadow-xl group-hover:shadow-brand-500/20
         ${boxStyles}
       `}>
         {/* 
            Inner SVG Wrapper
-           - Adjusted viewBox to "260 280 560 360" to crop whitespace and maximize the BA logo size.
+           - Minimal padding to maximize logo size
         */}
-        <div className="w-full h-full p-2 transition-transform duration-500 ease-out group-hover:rotate-3">
+        <div className="w-full h-full p-1 transition-transform duration-500 ease-out group-hover:rotate-3">
             <svg 
                 xmlns="http://www.w3.org/2000/svg" 
                 viewBox="260 280 560 360" 
@@ -64,10 +65,10 @@ export const Logo: React.FC<LogoProps> = ({ className = "", variant = 'dark' }) 
         </div>
       </div>
 
-      {/* Wordmark */}
+      {/* Wordmark - Significantly increased text size to match the larger icon */}
       <div className={`flex items-baseline tracking-tighter transition-all duration-300 group-hover:-translate-y-0.5 ${textColor}`}>
-        <span className="font-display font-bold text-2xl md:text-3xl transition-colors duration-300">Buildapt</span>
-        <span className={`font-display font-semibold text-2xl md:text-3xl ml-0.5 transition-colors duration-300 ${highlightColor}`}>AI</span>
+        <span className="font-display font-bold text-2xl md:text-3xl lg:text-3xl transition-colors duration-300">Buildapt</span>
+        <span className={`font-display font-semibold text-2xl md:text-3xl lg:text-3xl ml-0.5 transition-colors duration-300 ${highlightColor}`}>AI</span>
       </div>
     </Link>
   );

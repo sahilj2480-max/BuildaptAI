@@ -24,8 +24,8 @@ export const Button: React.FC<ButtonProps> = ({
   const baseStyles = "inline-flex items-center justify-center font-medium transition-all duration-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none active:scale-[0.98]";
   
   const variants = {
-    primary: "bg-navy-900 dark:bg-brand-600 hover:bg-navy-950 dark:hover:bg-brand-500 text-white shadow-lg shadow-navy-900/20 dark:shadow-brand-600/20 hover:shadow-xl hover:shadow-navy-900/40 dark:hover:shadow-brand-600/40 border border-transparent",
-    secondary: "bg-white dark:bg-navy-800 text-navy-900 dark:text-white hover:bg-slate-50 dark:hover:bg-navy-700 border border-slate-200 dark:border-navy-700 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-navy-600",
+    primary: "bg-navy-900 dark:bg-brand-600 hover:bg-navy-950 dark:hover:bg-brand-500 text-white shadow-lg shadow-navy-900/20 dark:shadow-brand-600/20 hover:shadow-xl hover:shadow-navy-900/40 dark:hover:shadow-brand-600/40 border border-transparent hover:-translate-y-0.5",
+    secondary: "bg-white dark:bg-navy-800 text-navy-900 dark:text-white hover:bg-slate-50 dark:hover:bg-navy-700 border border-slate-200 dark:border-navy-700 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-navy-600 hover:-translate-y-0.5",
     outline: "bg-transparent border border-slate-200 dark:border-navy-700 text-slate-600 dark:text-slate-300 hover:border-slate-300 dark:hover:border-navy-600 hover:text-navy-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-navy-800",
     ghost: "bg-transparent text-slate-600 dark:text-slate-400 hover:text-navy-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-navy-800",
   };

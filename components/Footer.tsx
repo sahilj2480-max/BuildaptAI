@@ -12,14 +12,14 @@ export const Footer: React.FC = () => {
           {/* Brand Column */}
           <div className="space-y-6">
             <Logo variant="light" />
-            <p className="text-slate-400 text-sm leading-relaxed max-w-xs">
+            <p className="text-slate-400 text-sm leading-relaxed max-w-xs mt-2">
               Empowering US & global businesses with intelligent automation. We turn repetitive tasks into scalable systems.
             </p>
             <div className="flex space-x-4 pt-2">
-              <a href="#" className="w-10 h-10 rounded-full bg-navy-900 flex items-center justify-center text-slate-400 hover:bg-brand-600 hover:text-white transition-all duration-300">
+              <a href="#" className="w-10 h-10 rounded-full bg-navy-900 flex items-center justify-center text-slate-400 hover:bg-brand-600 hover:text-white hover:scale-110 transition-all duration-300">
                 <Linkedin className="w-5 h-5" />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-navy-900 flex items-center justify-center text-slate-400 hover:bg-brand-600 hover:text-white transition-all duration-300">
+              <a href="#" className="w-10 h-10 rounded-full bg-navy-900 flex items-center justify-center text-slate-400 hover:bg-brand-600 hover:text-white hover:scale-110 transition-all duration-300">
                 <Twitter className="w-5 h-5" />
               </a>
             </div>
@@ -31,10 +31,10 @@ export const Footer: React.FC = () => {
           <div>
             <h3 className="text-sm font-bold uppercase tracking-widest text-white mb-6 font-display">Company</h3>
             <ul className="space-y-4">
-              <li><Link to="/" className="text-slate-400 hover:text-brand-400 transition-all text-sm hover:translate-x-1 inline-block duration-200">Home</Link></li>
-              <li><Link to="/about" className="text-slate-400 hover:text-brand-400 transition-all text-sm hover:translate-x-1 inline-block duration-200">About Us</Link></li>
-              <li><Link to="/services" className="text-slate-400 hover:text-brand-400 transition-all text-sm hover:translate-x-1 inline-block duration-200">Services</Link></li>
-              <li><Link to="/contact" className="text-slate-400 hover:text-brand-400 transition-all text-sm hover:translate-x-1 inline-block duration-200">Contact</Link></li>
+              <li><Link to="/" className="text-slate-400 hover:text-brand-400 transition-all text-sm hover:translate-x-1.5 inline-block duration-200">Home</Link></li>
+              <li><Link to="/about" className="text-slate-400 hover:text-brand-400 transition-all text-sm hover:translate-x-1.5 inline-block duration-200">About Us</Link></li>
+              <li><Link to="/services" className="text-slate-400 hover:text-brand-400 transition-all text-sm hover:translate-x-1.5 inline-block duration-200">Services</Link></li>
+              <li><Link to="/contact" className="text-slate-400 hover:text-brand-400 transition-all text-sm hover:translate-x-1.5 inline-block duration-200">Contact</Link></li>
             </ul>
           </div>
 
@@ -42,9 +42,9 @@ export const Footer: React.FC = () => {
           <div>
             <h3 className="text-sm font-bold uppercase tracking-widest text-white mb-6 font-display">Legal</h3>
             <ul className="space-y-4">
-              <li><a href="#" className="text-slate-400 hover:text-brand-400 transition-all text-sm hover:translate-x-1 inline-block duration-200">Privacy Policy</a></li>
-              <li><a href="#" className="text-slate-400 hover:text-brand-400 transition-all text-sm hover:translate-x-1 inline-block duration-200">Terms of Service</a></li>
-              <li><a href="#" className="text-slate-400 hover:text-brand-400 transition-all text-sm hover:translate-x-1 inline-block duration-200">Cookie Policy</a></li>
+              <li><a href="#" className="text-slate-400 hover:text-brand-400 transition-all text-sm hover:translate-x-1.5 inline-block duration-200">Privacy Policy</a></li>
+              <li><a href="#" className="text-slate-400 hover:text-brand-400 transition-all text-sm hover:translate-x-1.5 inline-block duration-200">Terms of Service</a></li>
+              <li><a href="#" className="text-slate-400 hover:text-brand-400 transition-all text-sm hover:translate-x-1.5 inline-block duration-200">Cookie Policy</a></li>
             </ul>
           </div>
 
@@ -53,18 +53,18 @@ export const Footer: React.FC = () => {
             <h3 className="text-sm font-bold uppercase tracking-widest text-white mb-6 font-display">Contact</h3>
             <ul className="space-y-6">
               <li className="flex items-start gap-4 text-sm text-slate-400 group">
-                <div className="p-2 bg-navy-900 rounded-lg group-hover:bg-brand-600/20 transition-colors">
+                <div className="p-2 bg-navy-900 rounded-lg group-hover:bg-brand-600/20 group-hover:text-brand-400 transition-colors">
                     <Mail className="w-5 h-5 text-brand-500 shrink-0" />
                 </div>
-                <span className="mt-1">hello@buildapt.ai</span>
+                <span className="mt-1 group-hover:text-white transition-colors">hello@buildapt.ai</span>
               </li>
               <li className="flex items-start gap-4 text-sm text-slate-400 group">
-                <div className="p-2 bg-navy-900 rounded-lg group-hover:bg-brand-600/20 transition-colors">
+                <div className="p-2 bg-navy-900 rounded-lg group-hover:bg-brand-600/20 group-hover:text-brand-400 transition-colors">
                     <MapPin className="w-5 h-5 text-brand-500 shrink-0" />
                 </div>
-                <span className="mt-1">
+                <span className="mt-1 group-hover:text-white transition-colors">
                   Maharashtra, India<br />
-                  <span className="text-slate-500 text-xs">Serving US & Global Clients</span>
+                  <span className="text-slate-500 text-xs group-hover:text-slate-400">Serving US & Global Clients</span>
                 </span>
               </li>
             </ul>
@@ -75,7 +75,7 @@ export const Footer: React.FC = () => {
           <p className="text-slate-500 text-sm">
             &copy; {new Date().getFullYear()} Buildapt AI. All rights reserved.
           </p>
-          <div className="flex items-center gap-2 px-3 py-1 bg-navy-900 rounded-full border border-navy-800">
+          <div className="flex items-center gap-2 px-3 py-1 bg-navy-900 rounded-full border border-navy-800 hover:border-brand-900 transition-colors">
             <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
             <span className="text-emerald-400 text-xs font-medium">Systems Operational</span>
           </div>

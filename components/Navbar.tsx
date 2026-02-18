@@ -76,27 +76,31 @@ export const Navbar: React.FC = () => {
               <Link
                 key={item.path}
                 to={item.path}
-                className={`text-sm font-medium tracking-wide transition-all duration-300 ${
+                className={`relative text-sm font-medium tracking-wide transition-all duration-300 px-1 py-1 ${
                   location.pathname === item.path 
-                    ? 'text-brand-600 dark:text-brand-400 drop-shadow-[0_0_8px_rgba(14,165,233,0.6)]' 
+                    ? 'text-brand-600 dark:text-brand-400 drop-shadow-[0_0_12px_rgba(14,165,233,0.5)]' 
                     : 'text-slate-600 dark:text-slate-300 hover:text-navy-900 dark:hover:text-white'
                 }`}
               >
                 {item.label}
+                {location.pathname === item.path && (
+                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-brand-500 rounded-full shadow-[0_0_8px_rgba(14,165,233,0.8)]"></span>
+                )}
               </Link>
             ))}
           </nav>
 
           {/* Actions */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden md:flex items-center gap-4">
+            {/* Theme Toggle - Removed white border, added soft background */}
             <button 
               onClick={toggleTheme}
-              className="w-10 h-10 flex items-center justify-center rounded-lg bg-slate-50 hover:bg-slate-100 dark:bg-navy-800/50 dark:hover:bg-navy-800 text-slate-500 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-all duration-300 active:scale-95 ring-1 ring-slate-100 dark:ring-navy-800"
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-slate-100/50 hover:bg-slate-200/80 dark:bg-navy-800/50 dark:hover:bg-navy-700/80 text-slate-500 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-all duration-300 active:scale-95 active:rotate-12 backdrop-blur-sm"
               aria-label="Toggle Dark Mode"
             >
               {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </button>
-            <Button to="/contact" variant="primary" size="sm" className="rounded-full px-6">
+            <Button to="/contact" variant="primary" size="sm" className="rounded-full px-6 shadow-lg shadow-brand-500/20">
               Book a Call
             </Button>
           </div>
@@ -105,7 +109,7 @@ export const Navbar: React.FC = () => {
           <div className="flex md:hidden items-center gap-4">
             <button 
                 onClick={toggleTheme}
-                className="w-9 h-9 flex items-center justify-center rounded-lg bg-slate-50 hover:bg-slate-100 dark:bg-navy-800/50 dark:hover:bg-navy-800 text-slate-500 dark:text-slate-400 transition-all"
+                className="w-9 h-9 flex items-center justify-center rounded-full bg-slate-100/50 hover:bg-slate-200/80 dark:bg-navy-800/50 dark:hover:bg-navy-700/80 text-slate-500 dark:text-slate-400 transition-all"
               >
                 {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
