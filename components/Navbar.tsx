@@ -91,7 +91,7 @@ export const Navbar: React.FC = () => {
           <div className="hidden md:flex items-center gap-3">
             <button 
               onClick={toggleTheme}
-              className="w-10 h-10 flex items-center justify-center rounded-lg border border-slate-200 dark:border-navy-700 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-navy-800 transition-all duration-300 active:scale-95"
+              className="w-10 h-10 flex items-center justify-center rounded-lg bg-slate-50 hover:bg-slate-100 dark:bg-navy-800/50 dark:hover:bg-navy-800 text-slate-500 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-all duration-300 active:scale-95 ring-1 ring-slate-100 dark:ring-navy-800"
               aria-label="Toggle Dark Mode"
             >
               {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
@@ -105,7 +105,7 @@ export const Navbar: React.FC = () => {
           <div className="flex md:hidden items-center gap-4">
             <button 
                 onClick={toggleTheme}
-                className="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 dark:border-navy-700 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-navy-800 transition-all"
+                className="w-9 h-9 flex items-center justify-center rounded-lg bg-slate-50 hover:bg-slate-100 dark:bg-navy-800/50 dark:hover:bg-navy-800 text-slate-500 dark:text-slate-400 transition-all"
               >
                 {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>

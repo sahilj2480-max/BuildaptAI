@@ -62,13 +62,13 @@ export const Home: React.FC = () => {
           
           {/* Headline */}
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-navy-950 dark:text-white mb-8 animate-fade-in-up [animation-delay:200ms] leading-[1.1]">
-            Build Intelligent Systems. <br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 via-brand-500 to-indigo-600 dark:from-brand-400 dark:via-brand-300 dark:to-indigo-400">Adapt for Growth.</span>
+            Building Scalable Systems <br className="hidden md:block" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 via-brand-500 to-indigo-600 dark:from-brand-400 dark:via-brand-300 dark:to-indigo-400">for Businesses Adapting to AI.</span>
           </h1>
           
           {/* Subheadline */}
           <p className="max-w-2xl mx-auto text-lg md:text-xl text-slate-500 dark:text-slate-400 mb-10 leading-relaxed animate-fade-in-up [animation-delay:400ms]">
-            We help ambitious businesses build and adapt with AI to automate, optimize, and accelerate growth.
+            We help ambitious businesses build and adapt with AI to automate, optimize, and accelerate growth without the operational chaos.
           </p>
           
           {/* CTA Buttons */}
