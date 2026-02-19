@@ -54,8 +54,8 @@ export const Home: React.FC = () => {
             
             {/* Animated Glows */}
             <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-brand-400/5 dark:bg-brand-500/5 rounded-full blur-[100px] animate-pulse-slow"></div>
-            <div className="absolute top-[10%] right-[-10%] w-[600px] h-[500px] bg-indigo-200/10 dark:bg-indigo-900/10 rounded-full blur-[100px]"></div>
-            <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[500px] bg-sky-200/10 dark:bg-sky-900/10 rounded-full blur-[100px]"></div>
+            <div className="absolute top-[10%] right-[-10%] w-[600px] h-[500px] bg-indigo-200/10 dark:bg-indigo-900/10 rounded-full blur-[100px] animate-float"></div>
+            <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[500px] bg-sky-200/10 dark:bg-sky-900/10 rounded-full blur-[100px] animate-float [animation-delay:2s]"></div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">

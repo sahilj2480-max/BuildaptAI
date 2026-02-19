@@ -72,22 +72,25 @@ export const Navbar: React.FC = () => {
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center space-x-10">
-            {navItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={`relative text-sm font-medium tracking-wide transition-all duration-300 px-1 py-1 ${
-                  location.pathname === item.path 
-                    ? 'text-brand-600 dark:text-brand-400 drop-shadow-[0_0_12px_rgba(14,165,233,0.5)]' 
-                    : 'text-slate-600 dark:text-slate-300 hover:text-navy-900 dark:hover:text-white'
-                }`}
-              >
-                {item.label}
-                {location.pathname === item.path && (
-                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-brand-500 rounded-full shadow-[0_0_8px_rgba(14,165,233,0.8)]"></span>
-                )}
-              </Link>
-            ))}
+            {navItems.map((item) => {
+              const isActive = location.pathname === item.path;
+              return (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={`relative text-sm font-medium tracking-wide transition-all duration-300 px-1 py-1 ${
+                    isActive
+                      ? 'text-brand-600 dark:text-brand-400 drop-shadow-[0_0_8px_rgba(14,165,233,0.5)]' 
+                      : 'text-slate-600 dark:text-slate-300 hover:text-navy-900 dark:hover:text-white'
+                  }`}
+                >
+                  {item.label}
+                  {isActive && (
+                    <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-brand-500 to-transparent rounded-full shadow-[0_0_10px_rgba(14,165,233,0.8)] animate-pulse"></span>
+                  )}
+                </Link>
+              );
+            })}
           </nav>
 
           {/* Actions */}

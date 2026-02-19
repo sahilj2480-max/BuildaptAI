@@ -30,12 +30,12 @@ export const Logo: React.FC<LogoProps> = ({ className = "", variant = 'dark' }) 
       {/* 
          Rectangular Box Container 
          - Size: w-14 h-14 (Larger container)
-         - No white borders
+         - Hover: Scales slightly and increases shadow
       */}
       <div className={`
         relative w-12 h-12 md:w-14 md:h-14 flex-shrink-0 flex items-center justify-center rounded-xl 
         transition-all duration-300 ease-out
-        group-hover:scale-105 group-hover:shadow-xl group-hover:shadow-brand-500/20
+        group-hover:scale-110 group-hover:shadow-xl group-hover:shadow-brand-500/20 group-hover:-translate-y-0.5
         ${boxStyles}
       `}>
         {/* 
